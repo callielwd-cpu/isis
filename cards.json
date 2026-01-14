@@ -207,15 +207,6 @@
         "Audio": "Audio/Naruto (criança).mp3"
     },
     {
-        "nome": "paulinho",
-        "id": "baba528f598247da954dab6b8aeb3476",
-        "img": "./imgs/paulinho.png",
-        "bio": "Meu idê, é seis, um, 1 ,treis, sete",
-        "Tag": "youtubers",
-        "models": "V5.4",
-        "Audio": "Audio/paulinho.mp3"
-    },
-    {
         "nome": "Salsicha (Mário Monjardim)",
         "id": "ccfee7542e51426980391b9c6b40a220",
         "img": "./imgs/Salsicha (Mário Monjardim).png",
