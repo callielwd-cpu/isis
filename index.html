@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* =========================================
-           1. CORE & VARIABLES
+           CORE & VARIABLES
            ========================================= */
         :root { 
-            --p: #6D28D9;
-            --a: #A78BFA; --bg: #030014; 
+            --p: #6D28D9; --a: #A78BFA; --bg: #030014; 
             --c: rgba(17, 17, 27, 0.6); --b: rgba(109, 40, 217, 0.2); 
             --glass: rgba(255, 255, 255, 0.03);
             --neon: 0 0 20px rgba(139, 92, 246, 0.3);
@@ -21,8 +20,7 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
         
         body { 
-            background: var(--bg);
-            color: #fff; min-height: 100vh; overflow-x: hidden; 
+            background: var(--bg); color: #fff; min-height: 100vh; overflow-x: hidden; 
             selection-background-color: var(--a); 
         }
 
@@ -32,7 +30,7 @@
         ::-webkit-scrollbar-track { background: #000; }
 
         /* =========================================
-           2. LAYOUT & HERO
+           LAYOUT & HERO
            ========================================= */
         .hero { height: 320px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .hero::after { content:''; position: absolute; bottom:0; left:0; width: 100%; height: 150px; background: linear-gradient(to top, var(--bg), transparent); z-index: 2; }
@@ -76,64 +74,42 @@
         .letter-card.active img { opacity: 0.2; }
 
         /* =========================================
-           3. TABS & CONTENT
+           TABS & CONTENT
            ========================================= */
         .tabs-section { padding-top: 20px; position: relative; z-index: 900; }
         .tabs-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; padding: 0 10px; }
         .tab-btn { background: transparent; border: 1px solid var(--b); color: rgba(255,255,255,0.6); padding: 10px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; transition: 0.3s; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
         .tab-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
         .tab-btn.active { background: var(--p); border-color: var(--p); color: #fff; box-shadow: var(--neon); }
-
         .tab-content { display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =========================================
-           NOVA SEÇÃO: CATEGORIAS (COMUNIDADE MÁGICA)
+           SKELETON & CARDS
            ========================================= */
-        .comm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 10px 20px 60px; max-width: 1400px; margin: 0 auto; }
-        .comm-card { background: rgba(20, 20, 25, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 0; position: relative; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); height: 320px; display: flex; flex-direction: column; justify-content: flex-end; }
-        .comm-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(3, 0, 20, 0.9) 100%); z-index: 2; }
-        .comm-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(109, 40, 217, 0.25); border-color: var(--a); }
-        .comm-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: 0.8s; z-index: 1; }
-        .comm-card:hover .comm-bg { transform: scale(1.15); filter: saturate(1.2); }
-        .comm-content { position: relative; z-index: 3; padding: 25px; width: 100%; }
-        .comm-badge { background: rgba(139, 92, 246, 0.3); border: 1px solid rgba(139, 92, 246, 0.4); backdrop-filter: blur(4px); color: #fff; font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; margin-bottom: 10px; display: inline-block; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
-        .comm-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 5px; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .comm-stats { display: flex; align-items: center; gap: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 10px; }
-        .comm-avatars { display: flex; padding-left: 10px; }
-        .comm-avatars img { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #111; margin-left: -10px; background: #333; }
+        .skeleton { background: rgba(255, 255, 255, 0.05); position: relative; overflow: hidden; border-radius: 8px; }
+        .skeleton::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent); transform: translateX(-100%); animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+        .sk-avatar { width: 70px; height: 70px; border-radius: 20px; flex-shrink: 0; }
+        .sk-line { height: 14px; margin-bottom: 8px; border-radius: 4px; }
+        .sk-line.sm { width: 40%; }
+        .sk-line.md { width: 70%; }
+        .sk-line.lg { width: 90%; }
+        .sk-player { height: 45px; border-radius: 12px; margin: 15px 0; }
+        .sk-actions { display: flex; gap: 10px; margin-top: auto; }
+        .sk-btn { height: 45px; flex: 1; border-radius: 12px; }
+        .sk-icon { width: 42px; height: 42px; border-radius: 12px; }
+        .sk-comm-card { height: 320px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); }
 
-        /* =========================================
-           NOVA SEÇÃO: AJUDA (PORTFÓLIO & SELECTS)
-           ========================================= */
-        .help-container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .help-header { text-align: center; margin-bottom: 50px; }
-        .help-header h2 { font-size: 2.5rem; background: linear-gradient(to right, #fff, var(--a)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
-        .faq-wrapper { display: flex; flex-direction: column; gap: 15px; }
-        .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; overflow: hidden; transition: 0.3s; }
-        .faq-item.active { background: rgba(109, 40, 217, 0.1); border-color: var(--p); box-shadow: 0 0 20px rgba(109, 40, 217, 0.15); }
-        .faq-trigger { width: 100%; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: transparent; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; }
-        .faq-trigger i { transition: 0.3s; color: var(--a); }
-        .faq-item.active .faq-trigger i { transform: rotate(180deg); color: #fff; }
-        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: rgba(0,0,0,0.2); }
-        .faq-body { padding: 0 25px 25px; color: #ccc; line-height: 1.6; font-size: 0.95rem; }
-        .music-indicator { display: flex; justify-content: center; align-items: flex-end; gap: 4px; height: 20px; margin: 10px auto; }
-        .music-bar { width: 3px; background: var(--p); animation: bounce 1s infinite ease-in-out; }
-        .music-bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
-        .music-bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
-        @keyframes bounce { 0%, 100% { height: 20%; } 50% { height: 100%; } }
-
-        /* Grids & Cards (Models) */
+        /* Cards Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; padding: 20px 20px 40px; max-width: 1400px; margin: 0 auto; perspective: 1000px; }
-        .card { background: rgba(20, 20, 25, 0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 20px; backdrop-filter: blur(10px); transition: transform 0.1s, box-shadow 0.3s; display: flex; flex-direction: column; position: relative; transform-style: preserve-3d; }
+        .card { background: rgba(20, 20, 25, 0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 20px; backdrop-filter: blur(10px); transition: transform 0.1s, box-shadow 0.3s; display: flex; flex-direction: column; position: relative; transform-style: preserve-3d; min-height: 250px; }
         .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px; padding: 1px; background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent 60%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.5; pointer-events: none; }
-        
         .card-header { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; transform: translateZ(20px); }
         .avatar-wrapper { position: relative; }
         .avatar { width: 70px; height: 70px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.1); object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .status-dot { position: absolute; bottom: -2px; right: -2px; width: 14px; height: 14px; background: #22c55e; border: 2px solid #000; border-radius: 50%; }
-        
         .info { flex: 1; }
         .info h3 { font-size: 1.2rem; margin-bottom: 2px; color: #fff; font-weight: 700; }
         .info .badge { display: inline-block; font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; border: 1px solid transparent; }
@@ -144,7 +120,7 @@
         .badge-top { background: rgba(192, 148, 53, 0.2); color: #ffb732; border-color: rgba(201, 183, 82, 0.3); }
         .info .tag-pill { display: inline-block; font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,0.1); color: #ccc; margin-left: 5px; }
         .info p { color: #a1a1aa; font-size: 0.85rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
+        
         .audio-player { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 12px; margin: 10px 0 20px; display: flex; align-items: center; gap: 12px; transform: translateZ(30px); border: 1px solid rgba(255,255,255,0.05); }
         .play-btn { width: 35px; height: 35px; border-radius: 50%; background: var(--p); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
         .play-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px var(--p); }
@@ -169,6 +145,52 @@
         .page-btn.active { background: var(--p); border-color: var(--p); color: #fff; box-shadow: 0 0 15px rgba(109, 40, 217, 0.5); }
         .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
+        /* =========================================
+           CATEGORIAS & COMUNIDADE
+           ========================================= */
+        .comm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 10px 20px 60px; max-width: 1400px; margin: 0 auto; }
+        .comm-card { background: rgba(20, 20, 25, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 0; position: relative; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); height: 320px; display: flex; flex-direction: column; justify-content: flex-end; }
+        .comm-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(3, 0, 20, 0.9) 100%); z-index: 2; }
+        .comm-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(109, 40, 217, 0.25); border-color: var(--a); }
+        .comm-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: 0.8s; z-index: 1; }
+        .comm-card:hover .comm-bg { transform: scale(1.15); filter: saturate(1.2); }
+        .comm-content { position: relative; z-index: 3; padding: 25px; width: 100%; }
+        .comm-badge { background: rgba(139, 92, 246, 0.3); border: 1px solid rgba(139, 92, 246, 0.4); backdrop-filter: blur(4px); color: #fff; font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; margin-bottom: 10px; display: inline-block; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+        .comm-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 5px; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .comm-stats { display: flex; align-items: center; gap: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 10px; }
+        .comm-avatars { display: flex; padding-left: 10px; }
+        .comm-avatars img { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #111; margin-left: -10px; background: #333; }
+        .back-cat-banner { max-width: 1400px; margin: 0 auto 10px; padding: 15px 20px; background: rgba(139, 92, 246, 0.1); border: 1px solid var(--p); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+        /* =========================================
+           AJUDA & FAQ (UPDATED)
+           ========================================= */
+        .help-container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .help-header { text-align: center; margin-bottom: 30px; }
+        .help-header h2 { font-size: 2.5rem; background: linear-gradient(to right, #fff, var(--a)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        
+        /* WARNING BOX */
+        .warning-box { background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.5); border-left: 4px solid #ef4444; border-radius: 16px; padding: 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 5px 20px rgba(220, 38, 38, 0.15); animation: pulseRed 3s infinite; }
+        @keyframes pulseRed { 0% { box-shadow: 0 0 0 rgba(220, 38, 38, 0.1); } 50% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.2); } 100% { box-shadow: 0 0 0 rgba(220, 38, 38, 0.1); } }
+        .warning-icon { font-size: 2rem; color: #ef4444; flex-shrink: 0; }
+        .warning-content h4 { color: #fca5a5; font-size: 1.1rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .warning-content p { color: #fee2e2; font-size: 0.9rem; line-height: 1.5; }
+
+        .faq-wrapper { display: flex; flex-direction: column; gap: 15px; }
+        .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; overflow: hidden; transition: 0.3s; }
+        .faq-item.active { background: rgba(109, 40, 217, 0.1); border-color: var(--p); box-shadow: 0 0 20px rgba(109, 40, 217, 0.15); }
+        .faq-trigger { width: 100%; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: transparent; border: none; color: #fff; font-size: 1.1rem; font-weight: 600; text-align: left; }
+        .faq-trigger i { transition: 0.3s; color: var(--a); }
+        .faq-item.active .faq-trigger i { transform: rotate(180deg); color: #fff; }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: rgba(0,0,0,0.2); }
+        .faq-body { padding: 0 25px 25px; color: #ccc; line-height: 1.6; font-size: 0.95rem; }
+        
+        .music-indicator { display: flex; justify-content: center; align-items: flex-end; gap: 4px; height: 20px; margin: 10px auto; }
+        .music-bar { width: 3px; background: var(--p); animation: bounce 1s infinite ease-in-out; }
+        .music-bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
+        .music-bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
+        @keyframes bounce { 0%, 100% { height: 20%; } 50% { height: 100%; } }
+
         /* Similar Section */
         .similar-section { max-width: 1400px; margin: 30px auto 10px; padding: 0 20px; display: none; }
         .similar-header { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; color: var(--a); }
@@ -177,10 +199,6 @@
         .similar-scroll::-webkit-scrollbar { display: none; }
         .nav-arrow { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
         .nav-arrow:hover { background: var(--p); border-color: var(--p); transform: scale(1.1); }
-        .nav-arrow.left { margin-right: 10px; }
-        .nav-arrow.right { margin-left: 10px; }
-
-        /* Card Simplificado para Semelhantes */
         .sim-card { min-width: 260px; max-width: 260px; background: rgba(20, 20, 25, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 15px; backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 10px; transition: 0.3s; }
         .sim-card:hover { transform: translateY(-5px); border-color: var(--a); background: rgba(25, 25, 35, 0.8); }
         .sim-header { display: flex; align-items: center; gap: 10px; }
@@ -189,7 +207,7 @@
         .sim-info span { font-size: 0.7rem; color: #aaa; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; }
         .sim-btn { background: var(--p); color: #fff; border: none; border-radius: 8px; padding: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; width: 100%; }
 
-        /* Modal Aviso */
+        /* Modal & Footer */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
         .modal-aviso { background: rgba(18, 18, 24, 0.85); backdrop-filter: blur(24px); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: var(--radius-lg); max-width: 500px; width: 92%; position: relative; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 30px rgba(109, 40, 217, 0.15); animation: modalUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
         @keyframes modalUp { from { transform: translateY(60px) scale(0.95); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
@@ -200,10 +218,8 @@
         .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.1); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 100; transition: 0.3s; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .close-modal:hover { background: var(--p); transform: rotate(90deg); box-shadow: 0 0 15px var(--p); border-color: transparent; }
 
-        .back-cat-banner { max-width: 1400px; margin: 0 auto 10px; padding: 15px 20px; background: rgba(139, 92, 246, 0.1); border: 1px solid var(--p); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
         footer { text-align: center; padding: 80px 20px; opacity: 0.4; font-size: 0.75rem; letter-spacing: 2px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; }
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.6; }
-        
         .toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
         .toast { background: rgba(15, 15, 20, 0.95); border: 1px solid var(--a); border-left: 4px solid var(--p); color: #fff; padding: 15px 25px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 15px; transform: translateX(120%); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); pointer-events: auto; min-width: 300px; }
         .toast.show { transform: translateX(0); }
@@ -216,7 +232,6 @@
             .search-box input { padding: 10px; font-size: 0.95rem; }
             .letter-card { width: 55px; height: 55px; }
             .letter-card span { font-size: 0.9rem; }
-            .letter-card img { opacity: 0.5; }
             .cat-header { margin-top: 10px; font-size: 1.3rem; }
             .grid { padding-top: 10px; }
             .tabs-section { padding-top: 10px; }
@@ -246,10 +261,10 @@
     </div>
 
     <header class="hero" id="heroSlideshow">
-        <img class="hero-slide active" src="https://i.ibb.co/1tR19TCv/onda.jpg">
-        <img class="hero-slide" src="https://i.ibb.co/zCfJSXY/Captura-de-tela-2025-12-27-220501.png">
-        <img class="hero-slide" src="https://i.ibb.co/KjQxTczV/isis-2.png">
-        <img class="hero-slide" src="https://i.ibb.co/wFXGT2K9/ondasonora2.gif">
+        <img class="hero-slide active" src="banner/ondasonora4.gif">
+        <img class="hero-slide" src="banner/isis (2).png">
+        <img class="hero-slide" src="banner/ondasonora.png">
+        <img class="hero-slide" src="banner/si.png">
         <img class="hero-slide" src="https://i.ibb.co/9HNxcg6G/ondasonora1.gif">
         <div class="hero-content">
             <h1>ísis voice</h1>
@@ -310,7 +325,7 @@
 
         <div id="catResultsView" style="display:none;">
             <div class="back-cat-banner">
-                 <span>Comunidade: <b id="catResultName" style="color:var(--a);">Nome</b></span>
+                <span>Comunidade: <b id="catResultName" style="color:var(--a);">Nome</b></span>
                 <button onclick="resetCategoryView()" style="background:var(--p); border:none; color:white; padding:8px 20px; border-radius:30px; cursor:pointer; font-weight:700; display:flex; align-items:center; gap:8px;">
                     <i class="fa-solid fa-arrow-left"></i> Voltar
                 </button>
@@ -331,59 +346,27 @@
                     <div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div>
                 </div>
                 <h2>FaQ</h2>
-                <p style="color:#aaa;">Tópico abaixo.</p>
+                <p style="color:#aaa;">Suporte, tutoriais e segurança.</p>
             </div>
 
-            <div class="faq-wrapper">
-                <div class="faq-item">
-                    <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span><i class="fa-brands fa-whatsapp" style="margin-right:10px;"></i> Como criar o áudio?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-content">
-                        <div class="faq-body">
-                            O processo é simples e automatizado:
-                            <br><br>
-                            1. Navegue pela aba <b>"Todos"</b> ou <b>"Categorias"</b>.<br>
-                            2. Ouça a prévia e escolha sua voz favorita.<br>
-                            3. Clique em <b>"Copiar ID"</b> no cartão do modelo.<br>
-                            4. Vá ao nosso Bot no WhatsApp e cole o ID para gerar sua mensagem.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span><i class="fa-solid fa-star" style="margin-right:10px;"></i> O que são os badges?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-content">
-                        <div class="faq-body">
-                            Identificamos a qualidade dos modelos através de selos:
-                            <ul style="margin-left:20px; margin-top:10px;">
-                                <li><b style="color:#facc15">V9.7 (Gold)</b>: Qualidade extrema, ultra realista.</li>
-                                <li><b style="color:#fb923c">V5.4 (Orange)</b>: Ótima qualidade, muito versátil.</li>
-                                <li><b style="color:#A78BFA">Purple</b>: Modelos padrão, rápidos e eficientes.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-trigger" onclick="toggleFaq(this)">
-                        <span><i class="fa-solid fa-bug" style="margin-right:10px;"></i> Reportar um problema</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-content">
-                        <div class="faq-body">
-                            Se um modelo não estiver funcionando ou o áudio estiver com falhas, por favor entre em contato com o suporte técnico imediatamente informando o ID do modelo.
-                        </div>
-                    </div>
+            <div class="warning-box">
+                <div class="warning-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="warning-content">
+                    <h4>Cuidado com Golpes</h4>
+                    <p>Utilize apenas o nosso bot oficial para gerar os áudios. Não pedimos senhas ou pagamentos fora da plataforma oficial. O ID dos modelos serve apenas para uso no Bot.</p>
                 </div>
             </div>
+
+            <div id="helpSearchResults" style="display:none; margin-bottom: 30px;">
+                <h3 style="margin-bottom:15px; font-size:1.2rem; color:var(--a);">Resultados da Busca:</h3>
+                <div id="helpModelResult" class="grid" style="padding:0; margin-bottom:20px;"></div>
+                <div id="helpFaqResult" class="faq-wrapper"></div>
+            </div>
+
+            <div class="faq-wrapper" id="faqList"></div>
             
             <div style="text-align:center; margin-top:50px;">
-                 <p style="font-size:0.8rem; opacity:0.5;">Tocando agora: 🎵 Ambient Lo-Fi Help</p>
+                 <p style="font-size:0.8rem; opacity:0.5;">Tocando agora: 🎵 That’s so true by Gracie Abrams</p>
             </div>
         </div>
     </section>
@@ -396,51 +379,103 @@
     <script>
         let modelos = [];
         let tags = [];
+        let helpData = []; 
         
         const globalAudio = new Audio();
-        // Áudio para a seção Help
-        const helpAudio = new Audio('That’s so true by Gracie Abrams.mp3'); 
+        const helpAudio = new Audio('That’s so true by Gracie Abrams.mp3');
         helpAudio.loop = true;
         helpAudio.volume = 0.4;
         
         let state = {
-            letter: 'all', search: '', categoryFilter: null,
+            letter: 'all', 
+            search: '', 
+            activeTab: 'models', 
             favorites: JSON.parse(localStorage.getItem('isis_favs')) || [],
             playingId: null,
             pageModels: 1, pageCats: 1, pageFavs: 1,
             limitModels: 16, limitCats: 10
         };
 
+        // --- SKELETONS ---
+        function renderModelSkeletons() {
+            const grid = document.getElementById('modelsGrid');
+            if(!grid) return;
+            grid.innerHTML = Array(state.limitModels).fill(0).map(() => `
+                <div class="card"><div class="card-header"><div class="skeleton sk-avatar"></div><div class="info" style="width:100%"><div class="skeleton sk-line sm"></div><div class="skeleton sk-line lg"></div><div class="skeleton sk-line md"></div></div></div><div class="skeleton sk-player"></div><div class="sk-actions"><div class="skeleton sk-btn"></div><div class="skeleton sk-icon"></div><div class="skeleton sk-icon"></div></div></div>`).join('');
+        }
+
+        function renderCategorySkeletons() {
+            const grid = document.getElementById('categoryGrid');
+            if(!grid) return;
+            grid.innerHTML = Array(6).fill(0).map(() => `<div class="skeleton sk-comm-card"></div>`).join('');
+        }
+
         async function init() {
+            renderModelSkeletons();
+            renderCategorySkeletons();
+
             try {
-                const [resCards, resTags] = await Promise.all([ fetch('cards.json'), fetch('tags.json') ]);
+                const [resCards, resTags, resHelp] = await Promise.all([ 
+                    fetch('cards.json'), fetch('tags.json'), fetch('help.json')
+                ]);
                 modelos = await resCards.json();
                 tags = await resTags.json();
-            } catch (error) { console.error("Erro ao carregar dados", error); }
+                helpData = await resHelp.json();
+            } catch (error) { 
+                console.error("Erro ao carregar dados", error);
+                showToast("Erro ao carregar dados", "triangle-exclamation");
+            }
 
+            // Iniciar interface
             initParticles();
             initAlphabet();
             renderCategories();
-            render();
+            renderHelpDefault(); 
             startSlideshow();
+
             globalAudio.onended = () => { state.playingId = null; render(); };
             
+            // --- CORREÇÃO: PERSISTÊNCIA DA ABA ---
+            // Recupera a última aba aberta pelo usuário ou usa 'models' como padrão
+            const lastTab = localStorage.getItem('isis_last_tab') || 'models';
+            // Chama o switchTab mas SEM scroll (passa false no scroll)
+            switchTab(lastTab, false, false);
+            
+            // BUSCA CONTEXTUAL
             const searchInput = document.getElementById('searchInput');
             const suggestionsBox = document.getElementById('searchSuggestions');
+            
             searchInput.addEventListener('input', (e) => {
-                const val = e.target.value.trim().toLowerCase();
-                state.search = val; state.pageModels = 1; 
-                switchTab('models'); render();
+                const val = e.target.value.trim();
+                state.search = val.toLowerCase();
+                
+                if (state.activeTab === 'models') {
+                    state.pageModels = 1; 
+                    render(); 
 
-                if (val.length > 0) {
-                    const matches = modelos.filter(m => m.nome.toLowerCase().includes(val)).slice(0, 5);
-                    suggestionsBox.style.display = matches.length ? 'block' : 'none';
-                    suggestionsBox.innerHTML = matches.map(m => `
-                        <div class="suggestion-item" onclick="selectSuggestion('${m.nome}')">
-                            <img src="${m.img}" class="sugg-img">
-                            <div class="sugg-info"><h4>${m.nome}</h4><span>${m.Tag || 'Modelo'}</span></div>
-                        </div>`).join('');
-                } else { suggestionsBox.style.display = 'none'; }
+                    // Sugestões (apenas na aba models)
+                    if (val.length > 0) {
+                        const matches = modelos.filter(m => m.nome.toLowerCase().includes(state.search)).slice(0, 5);
+                        suggestionsBox.style.display = matches.length ? 'block' : 'none';
+                        suggestionsBox.innerHTML = matches.map(m => `
+                            <div class="suggestion-item" onclick="selectSuggestion('${m.nome}')">
+                                <img src="${m.img}" class="sugg-img">
+                                <div class="sugg-info"><h4>${m.nome}</h4><span>${m.Tag || 'Modelo'}</span></div>
+                            </div>`).join('');
+                    } else { suggestionsBox.style.display = 'none'; }
+
+                } else if (state.activeTab === 'categories') {
+                    renderCategories();
+                    suggestionsBox.style.display = 'none';
+
+                } else if (state.activeTab === 'favorites') {
+                    render(); // Renderiza busca nos favoritos
+                    suggestionsBox.style.display = 'none';
+
+                } else if (state.activeTab === 'help') {
+                    handleHelpSearch(val);
+                    suggestionsBox.style.display = 'none';
+                }
             });
 
             document.addEventListener('click', (e) => {
@@ -450,9 +485,13 @@
 
         function selectSuggestion(name) {
             const searchInput = document.getElementById('searchInput');
-            state.search = name; searchInput.value = name;
+            state.search = name.toLowerCase(); 
+            searchInput.value = name;
             document.getElementById('searchSuggestions').style.display = 'none'; 
-            render();
+            
+            if(state.activeTab !== 'models') switchTab('models');
+            else render();
+            
             scrollToTabs();
         }
 
@@ -468,40 +507,49 @@
 
         // --- RENDER LOGIC ---
         function render() {
-            // Models
-            const allFiltered = modelos.filter(m => {
-                const searchMatch = m.nome.toLowerCase().includes(state.search.toLowerCase()) || (m.Tag && m.Tag.toLowerCase().includes(state.search.toLowerCase()));
-                return searchMatch && (state.letter === 'all' || m.nome.toUpperCase().startsWith(state.letter));
-            });
-            paginateAndRender(allFiltered, state.pageModels, state.limitModels, 'modelsGrid', 'pagination-models', (p) => { state.pageModels = p; });
-            
-            // Lógica de Semelhantes
-            const simSec = document.getElementById('similarSection');
-            const simScroll = document.getElementById('similarScroll');
-            
-            if(state.search.length > 0 && allFiltered.length > 0) {
-                const mainItem = allFiltered[0];
-                const similarItems = modelos.filter(m => m.Tag === mainItem.Tag && m.id !== mainItem.id);
-                if(similarItems.length > 0) {
-                    simSec.style.display = 'block';
-                    simScroll.innerHTML = similarItems.map(m => `
-                        <div class="sim-card">
-                            <div class="sim-header">
-                                <img src="${m.img}" class="sim-img">
-                                <div class="sim-info">
-                                    <h4>${m.nome}</h4>
-                                    <span>${m.Tag}</span>
-                                </div>
-                            </div>
-                            <button class="sim-btn" onclick="selectSuggestion('${m.nome}')">Ver Modelo</button>
-                        </div>
-                    `).join('');
-                } else { simSec.style.display = 'none'; }
-            } else { simSec.style.display = 'none'; }
+            // Models Logic - CORREÇÃO: Não busca por ID aqui, apenas Nome ou Tag
+            if (state.activeTab === 'models') {
+                const allFiltered = modelos.filter(m => {
+                    const searchMatch = 
+                        m.nome.toLowerCase().includes(state.search) || 
+                        (m.Tag && m.Tag.toLowerCase().includes(state.search));
+                        // ID REMOVIDO DAQUI
 
-            // Favorites
-            const favModels = modelos.filter(m => state.favorites.includes(m.id));
-            paginateAndRender(favModels, state.pageFavs, state.limitModels, 'favoritesGrid', 'pagination-favs', (p) => { state.pageFavs = p; });
+                    return searchMatch && (state.letter === 'all' || m.nome.toUpperCase().startsWith(state.letter));
+                });
+
+                paginateAndRender(allFiltered, state.pageModels, state.limitModels, 'modelsGrid', 'pagination-models', (p) => { state.pageModels = p; });
+                
+                // Lógica de Semelhantes
+                const simSec = document.getElementById('similarSection');
+                const simScroll = document.getElementById('similarScroll');
+                
+                if(state.search.length > 0 && allFiltered.length > 0) {
+                    const mainItem = allFiltered[0];
+                    const similarItems = modelos.filter(m => m.Tag === mainItem.Tag && m.id !== mainItem.id);
+                    if(similarItems.length > 0) {
+                        simSec.style.display = 'block';
+                        simScroll.innerHTML = similarItems.map(m => `
+                            <div class="sim-card">
+                                <div class="sim-header">
+                                    <img src="${m.img}" class="sim-img">
+                                    <div class="sim-info"><h4>${m.nome}</h4><span>${m.Tag}</span></div>
+                                </div>
+                                <button class="sim-btn" onclick="selectSuggestion('${m.nome}')">Ver Modelo</button>
+                            </div>
+                        `).join('');
+                    } else { simSec.style.display = 'none'; }
+                } else { simSec.style.display = 'none'; }
+            }
+
+            // Favorites Logic - CORREÇÃO: Renderização estava falhando
+            if (state.activeTab === 'favorites') {
+                const favModels = modelos.filter(m => state.favorites.includes(m.id));
+                // Aplica filtro de busca também nos favoritos
+                const favFiltered = state.search ? favModels.filter(m => m.nome.toLowerCase().includes(state.search)) : favModels;
+                
+                paginateAndRender(favFiltered, state.pageFavs, state.limitModels, 'favoritesGrid', 'pagination-favs', (p) => { state.pageFavs = p; });
+            }
             
             // Category Results
             if(document.getElementById('catResultsView').style.display === 'block') {
@@ -512,8 +560,7 @@
 
         function scrollSimilar(direction) {
             const container = document.getElementById('similarScroll');
-            const scrollAmount = 300; 
-            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            container.scrollBy({ left: direction * 300, behavior: 'smooth' });
         }
 
         function paginateAndRender(data, page, limit, gridId, pagId, onPageChange) {
@@ -541,7 +588,7 @@
         }
 
         window.handlePageCall = (btn, page) => { if(btn.parentElement.onPageChange) btn.parentElement.onPageChange(page); };
-        
+
         function renderGrid(id, data) {
             const grid = document.getElementById(id);
             if (!grid) return;
@@ -574,21 +621,19 @@
             }).join('');
         }
 
-        // --- CATEGORIES (ATUALIZADO) ---
+        // --- CATEGORIES ---
         function renderCategories() {
             const grid = document.getElementById('categoryGrid');
             if(!tags.length) return;
-            const total = Math.ceil(tags.length / state.limitCats);
+            const filteredTags = state.search ? tags.filter(t => t.Tag.toLowerCase().includes(state.search)) : tags;
+            const total = Math.ceil(filteredTags.length / state.limitCats);
             if (state.pageCats > total && total > 0) state.pageCats = 1;
             const start = (state.pageCats - 1) * state.limitCats;
             
-            // Renderização com estilo "Comunidade Mágica"
-            grid.innerHTML = tags.slice(start, start + state.limitCats).map(t => {
+            grid.innerHTML = filteredTags.slice(start, start + state.limitCats).map(t => {
                 const catModels = modelos.filter(m => m.Tag === t.Tag);
                 const count = catModels.length;
-                const avatarsHTML = catModels.slice(0, 3).map(m =>
-                    `<img src="${m.img}" alt="${m.nome}">`
-                ).join('');
+                const avatarsHTML = catModels.slice(0, 3).map(m => `<img src="${m.img}" alt="${m.nome}">`).join('');
                 
                 return `
                 <div class="comm-card" onclick="openCategoryInner('${t.Tag}')">
@@ -598,17 +643,11 @@
                         <h3 class="comm-title">${t.Tag}</h3>
                         <div class="comm-stats">
                             <span><i class="fa-solid fa-layer-group"></i> ${count} modelos</span>
-                            <span style="color:#4ade80">
-                            <i class="fa-solid fa-circle" style="font-size:6px; vertical-align:middle; margin-right:4px;"></i>Online
-                            </span>
+                            <span style="color:#4ade80"><i class="fa-solid fa-circle" style="font-size:6px; vertical-align:middle; margin-right:4px;"></i>Online</span>
                         </div>
                         <div style="margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
-                            <div class="comm-avatars">
-                                 ${avatarsHTML || '<span style="font-size:0.7rem; color:#aaa; margin-left:10px;">Vazio</span>'}
-                            </div>
-                            <button style="background:var(--p); color:white; border:none; padding:8px 16px; border-radius:20px; font-weight:700; cursor:pointer;">
-                        Entrar <i class="fa-solid fa-arrow-right"></i>
-                            </button>
+                            <div class="comm-avatars">${avatarsHTML || '<span style="font-size:0.7rem; color:#aaa; margin-left:10px;">Vazio</span>'}</div>
+                            <button style="background:var(--p); color:white; border:none; padding:8px 16px; border-radius:20px; font-weight:700; cursor:pointer;">Entrar <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>`;
@@ -626,20 +665,69 @@
             document.getElementById('catResultsView').style.display = 'block';
             document.getElementById('catResultName').innerText = tag;
             renderGrid('categoryResultsGrid', modelos.filter(m => m.Tag === tag));
-            const sticky = document.querySelector('.sticky-wrapper');
-            if(sticky) {
-                const target = sticky.offsetTop;
-                window.scrollTo({ top: target, behavior: 'smooth' });
-            }
+            window.scrollTo({ top: document.querySelector('.sticky-wrapper').offsetTop, behavior: 'smooth' });
         }
 
         function resetCategoryView() {
             document.getElementById('catResultsView').style.display = 'none';
             document.getElementById('catListView').style.display = 'block';
-            const sticky = document.querySelector('.sticky-wrapper');
-            if(sticky) { window.scrollTo({ top: sticky.offsetTop, behavior: 'smooth' }); }
+            window.scrollTo({ top: document.querySelector('.sticky-wrapper').offsetTop, behavior: 'smooth' });
         }
         
+        // --- HELP LOGIC (CORREÇÃO DE BUSCA POR ID) ---
+        function renderHelpDefault() {
+            const list = document.getElementById('faqList');
+            list.style.display = 'flex';
+            document.getElementById('helpSearchResults').style.display = 'none';
+            list.innerHTML = helpData.map(h => `
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)"><span><i class="fa-solid fa-${h.icon || 'question'}" style="margin-right:10px;"></i> ${h.question}</span><i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-content"><div class="faq-body">${h.answer}</div></div>
+                </div>`).join('');
+        }
+
+        function handleHelpSearch(val) {
+            const list = document.getElementById('faqList');
+            const results = document.getElementById('helpSearchResults');
+            const modelGrid = document.getElementById('helpModelResult');
+            const faqGrid = document.getElementById('helpFaqResult');
+
+            if (!val) { renderHelpDefault(); return; }
+
+            list.style.display = 'none';
+            results.style.display = 'block';
+            modelGrid.innerHTML = '';
+            faqGrid.innerHTML = '';
+
+            // 1. AQUI O SISTEMA BUSCA O ID (Apenas na aba Help)
+            const foundModel = modelos.filter(m => m.id.toLowerCase().includes(val));
+            if(foundModel.length > 0) {
+                 renderGrid('helpModelResult', foundModel);
+            }
+
+            // 2. Filtra FAQ
+            const foundFaq = helpData.filter(h => h.question.toLowerCase().includes(val) || h.answer.toLowerCase().includes(val));
+            if(foundFaq.length > 0) {
+                 faqGrid.innerHTML = foundFaq.map(h => `
+                    <div class="faq-item active">
+                        <div class="faq-trigger" style="cursor:default"><span><i class="fa-solid fa-${h.icon}" style="margin-right:10px;"></i> ${h.question}</span></div>
+                        <div class="faq-content" style="max-height:1000px"><div class="faq-body">${h.answer}</div></div>
+                    </div>`).join('');
+            } else if (foundModel.length === 0) {
+                faqGrid.innerHTML = `<p style="color:#aaa; text-align:center;">Nenhum tópico ou ID de modelo encontrado.</p>`;
+            }
+        }
+
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const content = item.querySelector('.faq-content');
+            document.querySelectorAll('.faq-item').forEach(i => { if(i !== item) { i.classList.remove('active'); i.querySelector('.faq-content').style.maxHeight = null; } });
+            item.classList.toggle('active');
+            if (item.classList.contains('active')) content.style.maxHeight = content.scrollHeight + "px";
+            else content.style.maxHeight = null;
+        }
+
+        // --- UTILS ---
         function renderPaginationControl(c, page, total, cb) {
              if(total <= 1) { c.innerHTML = ''; return; }
              let h = `<button class="page-btn" ${page===1?'disabled':''} onclick="handlePageCall(this,${page-1})"><i class="fa-solid fa-chevron-left"></i></button>`;
@@ -648,31 +736,13 @@
              c.innerHTML = h; c.onPageChange = cb;
         }
 
-        // --- ACTIONS ---
         function toggleAudio(id) {
             const model = modelos.find(m => m.id === id);
-            if (state.playingId === id) {
-                globalAudio.pause();
-                state.playingId = null;
-            } 
+            if (state.playingId === id) { globalAudio.pause(); state.playingId = null; } 
             else {
-                // Se o audio de Help estiver tocando, pausa ele
-                if(!helpAudio.paused) {
-                   helpAudio.pause();
-                   document.getElementById('helpMusicBars').style.opacity = '0';
-                }
-
-                if (model && model.Audio) {
-                    state.playingId = id;
-                    globalAudio.src = model.Audio; 
-                    globalAudio.currentTime = 0;
-                    globalAudio.play().catch(e => {
-                        console.error("Erro ao tocar áudio:", e);
-                        showToast("Erro no áudio", "circle-xmark");
-                    });
-                } else {
-                    showToast("Áudio indisponível", "circle-exclamation");
-                }
+                if(!helpAudio.paused) { helpAudio.pause(); document.getElementById('helpMusicBars').style.opacity = '0'; }
+                if (model && model.Audio) { state.playingId = id; globalAudio.src = model.Audio; globalAudio.currentTime = 0; globalAudio.play().catch(e => { console.error(e); showToast("Erro no áudio", "circle-xmark"); }); } 
+                else { showToast("Áudio indisponível", "circle-exclamation"); }
             }
             render();
         }
@@ -680,8 +750,14 @@
         function toggleFav(id) {
             if (state.favorites.includes(id)) { state.favorites = state.favorites.filter(f => f !== id); showToast('Removido', 'trash'); }
             else { state.favorites.push(id); showToast('Favoritado', 'heart'); }
-            localStorage.setItem('isis_favs', JSON.stringify(state.favorites)); render();
+            localStorage.setItem('isis_favs', JSON.stringify(state.favorites)); 
+            
+            // CORREÇÃO: Força o re-render se estiver na aba de favoritos
+            if(state.activeTab === 'favorites') render();
+            // Se estiver em models, re-renderiza para atualizar o coração
+            else if(state.activeTab === 'models') renderGrid('modelsGrid', modelos.slice((state.pageModels-1)*state.limitModels, state.pageModels*state.limitModels));
         }
+
         function handleCopy(n, id) { navigator.clipboard.writeText(id); showToast(`${n} copiado!`); }
         function showToast(m, i='check') {
             const container = document.getElementById('toastContainer');
@@ -698,8 +774,6 @@
             }
         }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        // --- VISUALS ---
         function handleTilt(e, card) {
             const r = card.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
             card.style.transform = `perspective(1000px) rotateX(${((y - r.height/2)/r.height)*-10}deg) rotateY(${((x - r.width/2)/r.width)*10}deg) scale(1.02)`;
@@ -713,67 +787,57 @@
             const mkCard = (l, all) => {
                 let img = "";
                 if(all && modelos.length > 0) img = modelos[0].img;
-                else {
-                    const found = modelos.find(m=>m.nome.startsWith(l));
-                    if(found) img = found.img;
-                }
+                else { const found = modelos.find(m=>m.nome.startsWith(l)); if(found) img = found.img; }
                 const isActive = (all && state.letter === 'all') || state.letter === l ? 'active' : '';
                 return `<div class="letter-card ${isActive}" onclick="setLetter('${all?'all':l}')"><img src="${img}"><span>${all?'*':l}</span></div>`;
             };
-
             let h = mkCard(null, true);
             letters.forEach(l => h += mkCard(l));
-            track.innerHTML = h + h; 
-            track.className = 'alphabet-track infinite';
+            track.innerHTML = h + h; track.className = 'alphabet-track infinite';
         }
         function setLetter(l) { state.letter = (state.letter === l && l !== 'all') ? 'all' : l; initAlphabet(); switchTab('models', true); render(); }
 
-        // --- SWITCH TAB (ATUALIZADO PARA MÚSICA) ---
-        function switchTab(tab, reset = false) {
+        // --- SWITCH TAB (CORRIGIDA) ---
+        function switchTab(tab, reset = false, shouldScroll = true) {
+            state.activeTab = tab; 
+            
+            // CORREÇÃO: Salva a aba atual no LocalStorage
+            localStorage.setItem('isis_last_tab', tab);
+
+            state.search = ''; 
+            document.getElementById('searchInput').value = ''; 
+            document.getElementById('searchSuggestions').style.display = 'none';
+            
+            const ph = tab === 'models' ? "Busque por nome ou tag..." : 
+                       tab === 'categories' ? "Busque uma comunidade..." :
+                       tab === 'help' ? "Dúvida ou ID do modelo..." : "Busque nos favoritos...";
+            document.getElementById('searchInput').placeholder = ph;
+
             document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', ['models','categories','favorites','help'][i] === tab));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tab + '-tab').classList.add('active');
             document.getElementById('alphabetContainer').style.display = (tab === 'models') ? 'block' : 'none';
-            if(tab === 'categories' && reset) resetCategoryView();
+            
+            if(tab === 'categories' && reset) { resetCategoryView(); renderCategories(); }
+            if(tab === 'help') { renderHelpDefault(); }
+            
+            // CORREÇÃO: Força renderização ao mudar para favoritos ou models
+            if(tab === 'favorites' || tab === 'models') {
+                render();
+            }
 
-            // Help Audio Logic
             const bars = document.getElementById('helpMusicBars');
             if (tab === 'help') {
                 helpAudio.currentTime = 0;
-                helpAudio.play().catch(e => console.log("Interação necessária para tocar áudio"));
+                helpAudio.play().catch(e => console.log("Interação necessária"));
                 if(bars) bars.style.opacity = '1';
-                
-                if(state.playingId) {
-                    globalAudio.pause();
-                    state.playingId = null;
-                    render();
-                }
+                if(state.playingId) { globalAudio.pause(); state.playingId = null; render(); }
             } else {
                 helpAudio.pause();
                 if(bars) bars.style.opacity = '0';
             }
-            scrollToTabs();
-        }
-
-        // --- FAQ TOGGLE ---
-        function toggleFaq(btn) {
-            const item = btn.parentElement;
-            const content = item.querySelector('.faq-content');
             
-            // Fecha outros se quiser comportamento de acordeão único
-            document.querySelectorAll('.faq-item').forEach(i => {
-                if(i !== item) {
-                    i.classList.remove('active');
-                    i.querySelector('.faq-content').style.maxHeight = null;
-                }
-            });
-
-            item.classList.toggle('active');
-            if (item.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                content.style.maxHeight = null;
-            }
+            if(shouldScroll) scrollToTabs();
         }
 
         function startSlideshow() {

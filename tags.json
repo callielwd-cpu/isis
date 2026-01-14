@@ -1,0 +1,44 @@
+[
+    {
+        "Tag": "séries",
+        "img": "./img2/round6capa.jpg",
+        "img2": "./img2/it.jpg"
+    },
+    {
+        "Tag": "animes",
+        "img": "./img2/anime1.png",
+        "img2": "./img2/nime.gif"
+    },
+    {
+        "Tag": "youtubers",
+        "img2": "./img2/br bieas.jpg",
+        "img": "./img2/youte.gif"
+    },
+    {
+        "Tag": "jogos",
+        "img": "./img2/neymar.jpg"
+    },
+    {
+        "Tag": "nostalgia",
+        "img": "./img2/NF2U.jpg",
+        "img2": "./img2/uni.gif"
+    },
+    {
+        "Tag": "desenhos",
+        "img": "./img2/desnehosan.jpg",
+        "img2": "./img2/dani.gif"
+    },
+    {
+        "Tag": "selebridades",
+        "img": "./img2/selebridades.jpg"
+    },
+    {
+        "Tag": "internacional",
+        "img": "./img2/interna.png"
+    },
+    {
+        "Tag": "Girls",
+        "img": "./img2/girl.jpg"
+    }
+]
+
