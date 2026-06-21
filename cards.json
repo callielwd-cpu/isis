@@ -241,6 +241,15 @@
         "Tag": "desenhos",
         "models": "V5.4",
         "Audio": "Audio/Salsicha (Mário Monjardim).mp3"
+    },
+    {
+        "nome": "ASTA melhorado",
+        "id": "acc42c0326884aaea81e137e66d22e95",
+        "img": "./imgs/ASTA melhorado.jpg",
+        "bio": "Puxa vida, pessoal, eu tô com um mau pressentimento sobre esse lugar. Scooby, que tal a gente dar uma passadinha na lanchonete aqui perto? Pelo menos lá a gente só encontra sanduíches gigantes, não fantasmas assustadores!",
+        "Tag": "animes",
+        "models": "V5.4",
+        "Audio": "Audio/ASTA melhorado.mp3"
     }
     
 ]
