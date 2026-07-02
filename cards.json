@@ -45,6 +45,15 @@
         "Audio": "Audio/Tessa.mp3"
     },
     {
+        "nome": "sukuna v3",
+        "id": "f3f59da2d3164c05846421a20d087b62",
+        "img": "./imgs/sukuna v3.jpg",
+        "bio": "Expansão de domínio, Fukumi no sushi. Vamos! É cedo pra desistir. Não me interessa se você vai viver, nem se vai morrer. Você vai tomar a minha alma, huh? Vai ser um massacre!",
+        "Tag": "animes",
+        "models": "🏅 Top 10",
+        "Audio": "Audio/sukuna v3.mp3"
+    },
+    {
         "nome": "Tecnologia",
         "id": "077740a797be42d78f585e164e9d1c1a",
         "img": "./imgs/Tecnologia.jpg",
