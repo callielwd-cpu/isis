@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Callie tts | Ultra Premium</title>
+    <title>Callie Audio | Ultra Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -420,19 +420,19 @@
             
             .top-header { padding: 0 15px; height: 60px; }
             #pageTitle { font-size: 1rem; }
-            .search-container { max-width: 170px; margin: 0 5px; }
-            .search-box { padding: 5px 12px; }
-            .search-box input { padding: 4px; font-size: 0.8rem; }
+            .search-container { max-width: 150px; margin: 0 10px; }
+            .search-box { padding: 5px 15px; }
+            .search-box input { padding: 6px; font-size: 0.85rem; }
             .header-icon { width: 30px; height: 30px; font-size: 0.8rem; }
             .header-profile { width: 30px; height: 30px; }
             
             .premium-header { padding: 15px; }
-            .hero h1 { font-size: 2.6rem; }
+            .hero h1 { font-size: 3rem; }
             
-            .letter-card { width: 50px; height: 50px; }
-            .letter-card span { font-size: 0.85rem; }
+            .letter-card { width: 55px; height: 55px; }
+            .letter-card span { font-size: 0.9rem; }
             .cat-header { margin-top: 10px; font-size: 1.3rem; }
-            .grid { padding: 10px 10px 40px; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+            .grid { padding-top: 10px; }
             .modal-aviso { width: 90%; border-radius: 24px; }
             .info-content { margin-top: -60px; padding: 0 20px 30px; }
             .info-title { font-size: 1.8rem; }
@@ -448,626 +448,14 @@
             .excl-list-actions { gap: 4px; }
             .excl-list-rank { min-width: 14px; font-size: 0.7rem; }
             .excl-list-title { font-size: 1.15rem; }
-
-            /* Help & WhatsApp Mobile Adjustments */
-            .help-container { padding: 15px 10px 40px; gap: 20px; }
-            .help-card-pro { padding: 20px; border-radius: 20px; }
-            .help-section-title { font-size: 1.7rem; }
-            .wp-body { min-height: 200px; padding: 12px; }
-            .wp-msg { max-width: 90%; font-size: 0.8rem; }
-            .pro-action-card { padding: 20px; border-radius: 20px; }
-        }
-
-        @media (max-width: 480px) {
-            .grid { grid-template-columns: 1fr; }
-            .card { padding: 16px; border-radius: 18px; }
-            .avatar { width: 55px; height: 55px; border-radius: 14px; }
-            .info h3 { font-size: 1.05rem; }
-            .play-btn { width: 38px; height: 38px; }
-            .audio-player::before { width: 48px; height: 48px; }
-            .btn { padding: 10px; font-size: 0.75rem; }
-            .btn-icon { width: 38px; border-radius: 10px; }
         }
         
         /* Sidebar Overlay for Mobile */
         .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1500; display: none; opacity: 0; transition: 0.3s; }
         .sidebar-overlay.show { display: block; opacity: 1; }
-
-        /* =========================================
-           LOADER SCREEN
-           ========================================= */
-        #loader-screen {
-            position: fixed; inset: 0; z-index: 99999;
-            background: #030014;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #loader-screen.hide {
-            opacity: 0;
-            transform: scale(1.04);
-            pointer-events: none;
-        }
-        #loader-canvas {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            opacity: 0.55;
-        }
-        .loader-center {
-            position: relative; z-index: 10;
-            display: flex; flex-direction: column;
-            align-items: center; gap: 0;
-        }
-        /* Orb glow */
-        .loader-orb {
-            width: 120px; height: 120px; position: relative;
-            margin-bottom: 32px;
-        }
-        .loader-orb-ring {
-            position: absolute; inset: 0;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            animation: orbSpin 2.5s linear infinite;
-        }
-        .loader-orb-ring:nth-child(1) {
-            border-top-color: rgba(139, 92, 246, 0.9);
-            border-right-color: rgba(139, 92, 246, 0.3);
-            animation-duration: 2.5s;
-        }
-        .loader-orb-ring:nth-child(2) {
-            inset: 10px;
-            border-top-color: rgba(167, 139, 250, 0.7);
-            border-left-color: rgba(167, 139, 250, 0.2);
-            animation-duration: 1.8s;
-            animation-direction: reverse;
-        }
-        .loader-orb-ring:nth-child(3) {
-            inset: 22px;
-            border-bottom-color: rgba(196, 181, 253, 0.6);
-            border-right-color: rgba(196, 181, 253, 0.15);
-            animation-duration: 3.2s;
-        }
-        @keyframes orbSpin { to { transform: rotate(360deg); } }
-        .loader-orb-core {
-            position: absolute; inset: 32px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #a78bfa, #6d28d9 55%, #3b0764);
-            box-shadow: 0 0 40px rgba(109, 40, 217, 0.8), 0 0 80px rgba(109, 40, 217, 0.3);
-            animation: corePulse 2s ease-in-out infinite;
-        }
-        .loader-orb-core i {
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; color: #fff;
-            filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
-        }
-        @keyframes corePulse {
-            0%, 100% { box-shadow: 0 0 40px rgba(109,40,217,0.8), 0 0 80px rgba(109,40,217,0.3); transform: scale(1); }
-            50% { box-shadow: 0 0 60px rgba(139,92,246,1), 0 0 120px rgba(109,40,217,0.5); transform: scale(1.06); }
-        }
-        /* Particle dots orbit */
-        .loader-orbit {
-            position: absolute; inset: 0;
-            animation: orbSpin 4s linear infinite;
-        }
-        .loader-orbit-dot {
-            position: absolute; width: 6px; height: 6px;
-            border-radius: 50%; background: #a78bfa;
-            box-shadow: 0 0 10px #a78bfa;
-            top: -3px; left: calc(50% - 3px);
-        }
-        .loader-orbit:nth-child(5) { animation-duration: 3s; animation-direction: reverse; }
-        .loader-orbit:nth-child(5) .loader-orbit-dot {
-            background: #c4b5fd; width: 4px; height: 4px;
-            top: auto; bottom: -2px; left: calc(50% - 2px);
-        }
-
-        /* Brand */
-        .loader-brand {
-            font-size: 2.6rem; font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(to right, #fff 0%, #c4b5fd 40%, #a78bfa 70%, #fff 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shimmerText 2.5s linear infinite;
-            margin-bottom: 6px;
-        }
-        @keyframes shimmerText {
-            0% { background-position: 200% center; }
-            100% { background-position: -200% center; }
-        }
-        .loader-subtitle {
-            font-size: 0.7rem; letter-spacing: 5px;
-            text-transform: uppercase;
-            color: rgba(167, 139, 250, 0.6);
-            margin-bottom: 44px;
-            animation: subtleFade 2s ease-in-out infinite alternate;
-        }
-        @keyframes subtleFade {
-            from { opacity: 0.4; } to { opacity: 0.9; }
-        }
-
-        /* Waveform bars */
-        .loader-wave {
-            display: flex; align-items: center; gap: 5px;
-            height: 48px; margin-bottom: 38px;
-        }
-        .loader-wave-bar {
-            width: 4px; border-radius: 4px;
-            background: linear-gradient(to top, #6d28d9, #a78bfa, #e9d5ff);
-            box-shadow: 0 0 8px rgba(139,92,246,0.5);
-            animation: loaderBar 1s ease-in-out infinite;
-        }
-        @keyframes loaderBar {
-            0%, 100% { height: 6px; opacity: 0.4; }
-            50% { height: 48px; opacity: 1; }
-        }
-
-        /* Progress bar */
-        .loader-progress-wrap {
-            width: 280px;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
-        }
-        .loader-progress-info {
-            display: flex; justify-content: space-between; align-items: center;
-            width: 100%;
-        }
-        .loader-progress-label {
-            font-size: 0.7rem; letter-spacing: 2px;
-            text-transform: uppercase; color: rgba(255,255,255,0.4);
-        }
-        .loader-progress-pct {
-            font-size: 0.85rem; font-weight: 800;
-            color: #a78bfa; font-variant-numeric: tabular-nums;
-        }
-        .loader-progress-track {
-            width: 100%; height: 3px;
-            background: rgba(255,255,255,0.07);
-            border-radius: 99px; overflow: hidden;
-            position: relative;
-        }
-        .loader-progress-bar {
-            height: 100%; width: 0%;
-            background: linear-gradient(to right, #6d28d9, #a78bfa, #c4b5fd);
-            border-radius: 99px;
-            transition: width 0.3s ease;
-            position: relative;
-        }
-        .loader-progress-bar::after {
-            content: '';
-            position: absolute; right: 0; top: 50%;
-            transform: translateY(-50%);
-            width: 6px; height: 6px; border-radius: 50%;
-            background: #e9d5ff;
-            box-shadow: 0 0 10px #a78bfa, 0 0 20px #a78bfa;
-        }
-        /* Scan line */
-        .loader-scanline {
-            position: absolute; inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(139,92,246,0.015) 2px,
-                rgba(139,92,246,0.015) 4px
-            );
-            pointer-events: none;
-        }
-        /* Corner decorations */
-        .loader-corner {
-            position: absolute; width: 30px; height: 30px;
-            opacity: 0.5;
-        }
-        .loader-corner::before, .loader-corner::after { content: ''; position: absolute; background: #6d28d9; }
-        .loader-corner::before { width: 100%; height: 2px; top: 0; }
-        .loader-corner::after { width: 2px; height: 100%; top: 0; }
-        .loader-corner.tl { top: 20px; left: 20px; }
-        .loader-corner.tr { top: 20px; right: 20px; transform: scaleX(-1); }
-        .loader-corner.bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
-        .loader-corner.br { bottom: 20px; right: 20px; transform: scale(-1); }
-
-        /* =========================================
-           DECORATIVE CHARACTER & HELP TAB (PRO)
-           ========================================= */
-        .bg-char-decor {
-            position: fixed;
-            bottom: 0;
-            right: -20px;
-            height: 72vh;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.32;
-            filter: drop-shadow(0 0 35px rgba(109, 40, 217, 0.25));
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.6s ease;
-            transform-origin: bottom right;
-        }
-        @media (max-width: 1024px) {
-            .bg-char-decor { height: 50vh; opacity: 0.2; }
-        }
-        @media (max-width: 768px) {
-            .bg-char-decor { height: 35vh; opacity: 0.15; right: -10px; }
-        }
-
-        /* Help Page Styling */
-        .help-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 20px 60px;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            position: relative;
-            z-index: 10;
-        }
-        @media (max-width: 992px) {
-            .help-container { grid-template-columns: 1fr; gap: 30px; }
-        }
-        .help-section-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #fff, var(--a));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .help-section-subtitle {
-            color: #a1a1aa;
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-        }
-        .help-card-pro {
-            background: rgba(20, 20, 25, 0.55);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 28px;
-            padding: 30px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
-            margin-bottom: 25px;
-            position: relative;
-            overflow: hidden;
-        }
-        .help-card-pro::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.05) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .help-step-number {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 4rem;
-            font-weight: 900;
-            color: rgba(255,255,255,0.02);
-            line-height: 1;
-            font-family: system-ui;
-        }
-        .help-step-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .help-step-title i {
-            color: var(--a);
-            text-shadow: var(--neon);
-        }
-        .help-step-desc {
-            color: #a1a1aa;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* Mockup Voice Card in Help */
-        .help-mockup-wrap {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        .help-mockup-arrow {
-            position: absolute;
-            bottom: -15px;
-            right: 15%;
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: arrowBounce 1.5s infinite alternate;
-        }
-        .help-mockup-arrow i {
-            font-size: 1.8rem;
-            color: #fb7185;
-            filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.8));
-        }
-        .help-mockup-arrow span {
-            background: #fb7185;
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 6px;
-            margin-top: 5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 15px rgba(251, 113, 133, 0.4);
-            white-space: nowrap;
-        }
-        @keyframes arrowBounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
-        }
-
-        /* Simulated Whatsapp Screen */
-        .wp-chat-sim {
-            background: #0b141a;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.06);
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            margin: 20px 0;
-        }
-        .wp-header {
-            background: #202c33;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .wp-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1.5px solid var(--a);
-            object-fit: cover;
-        }
-        .wp-info h4 {
-            font-size: 0.9rem;
-            color: #e9edef;
-            font-weight: 600;
-        }
-        .wp-info span {
-            font-size: 0.7rem;
-            color: #8696a0;
-        }
-        .wp-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background-image: radial-gradient(rgba(109, 40, 217, 0.08) 1.5px, transparent 1.5px);
-            background-size: 24px 24px;
-            min-height: 240px;
-        }
-        .wp-msg {
-            max-width: 85%;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            line-height: 1.45;
-            position: relative;
-        }
-        .wp-msg.sent {
-            background: #005c4b;
-            color: #e9edef;
-            align-self: flex-end;
-            border-top-right-radius: 2px;
-        }
-        .wp-msg.received {
-            background: #202c33;
-            color: #e9edef;
-            align-self: flex-start;
-            border-top-left-radius: 2px;
-        }
-        .wp-time {
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.4);
-            margin-top: 4px;
-            text-align: right;
-            display: block;
-        }
-        .wp-msg.sent b {
-            color: #25d366;
-            font-family: monospace;
-            padding: 1px 4px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 4px;
-        }
-        .wp-audio-play {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 4px 0;
-        }
-        .wp-audio-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--p);
-            border: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .wp-audio-wave {
-            flex: 1;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-        .wp-audio-wave span {
-            width: 3px;
-            height: 80%;
-            background: #8696a0;
-            border-radius: 10px;
-        }
-        .wp-audio-wave span.active {
-            background: var(--a);
-        }
-        .wp-footer-input {
-            background: #202c33;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .wp-input-box {
-            flex: 1;
-            background: #2a3942;
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 0.8rem;
-            color: #8696a0;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Invite Cards section (Right column) */
-        .help-side-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        .pro-action-card {
-            background: linear-gradient(135deg, rgba(20, 20, 25, 0.7), rgba(30, 20, 45, 0.4));
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 28px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .pro-action-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 15px 35px rgba(109, 40, 217, 0.15);
-        }
-        .pro-action-card.wp-invite {
-            border-color: rgba(37, 211, 102, 0.2);
-            background: linear-gradient(135deg, rgba(20, 25, 20, 0.7), rgba(15, 30, 20, 0.4));
-        }
-        .pro-action-card.wp-invite:hover {
-            border-color: rgba(37, 211, 102, 0.4);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.15);
-        }
-        .pro-card-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--a);
-            transition: 0.3s;
-        }
-        .wp-invite .pro-card-icon {
-            color: #25d366;
-            background: rgba(37, 211, 102, 0.05);
-            border-color: rgba(37, 211, 102, 0.15);
-        }
-        .pro-action-card:hover .pro-card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        .pro-card-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .pro-card-desc {
-            font-size: 0.85rem;
-            color: #a1a1aa;
-            line-height: 1.5;
-            margin-bottom: 25px;
-        }
-        .pro-card-btn {
-            width: 100%;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .wp-invite .pro-card-btn {
-            background: #25d366;
-            color: #0b141a;
-        }
-        .wp-invite .pro-card-btn:hover {
-            background: #1ebd54;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
-        }
-        .info-invite .pro-card-btn {
-            background: var(--p);
-            color: #fff;
-        }
-        .info-invite .pro-card-btn:hover {
-            background: var(--a);
-            box-shadow: 0 0 20px rgba(109, 40, 217, 0.4);
-        }
     </style>
 </head>
 <body>
-
-    <!-- ===== LOADER SCREEN ===== -->
-    <div id="loader-screen">
-        <canvas id="loader-canvas"></canvas>
-        <div class="loader-scanline"></div>
-        <div class="loader-corner tl"></div>
-        <div class="loader-corner tr"></div>
-        <div class="loader-corner bl"></div>
-        <div class="loader-corner br"></div>
-        <div class="loader-center">
-            <div class="loader-orb">
-                <div class="loader-orb-ring"></div>
-                <div class="loader-orb-ring"></div>
-                <div class="loader-orb-ring"></div>
-                <div class="loader-orbit"><div class="loader-orbit-dot"></div></div>
-                <div class="loader-orbit"><div class="loader-orbit-dot"></div></div>
-                <div class="loader-orb-core"><i class="fa-solid fa-waveform"></i></div>
-            </div>
-            <div class="loader-brand">Callie tts</div>
-            <div class="loader-subtitle">Premium AI Voice Models</div>
-            <div class="loader-wave" id="loaderWave"></div>
-            <div class="loader-progress-wrap">
-                <div class="loader-progress-info">
-                    <span class="loader-progress-label">Carregando</span>
-                    <span class="loader-progress-pct" id="loaderPct">0%</span>
-                </div>
-                <div class="loader-progress-track">
-                    <div class="loader-progress-bar" id="loaderBar"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ===== END LOADER ===== -->
 
     <canvas id="particles-canvas"></canvas>
     <!-- Surreal Soundwave Background Layer -->
@@ -1101,8 +489,6 @@
                 <a href="#" class="sidebar-link" onclick="switchTab('favorites')"><i class="fa-solid fa-heart"></i> Favoritos</a>
                 <div class="sidebar-section">⚛︎ Premium/VIP</div>
                 <a href="#" class="sidebar-link" onclick="switchTab('exclusivos')"><i class="fa-solid fa-crown"></i> Exclusivos</a>
-                <div class="sidebar-section">⚛︎ Utilidades</div>
-                <a href="#" class="sidebar-link" onclick="switchTab('help')"><i class="fa-solid fa-circle-question"></i> Ajuda (Help)</a>
             </div>
         </aside>
 
@@ -1139,7 +525,6 @@
                 <div id="inicio-premium-header" class="premium-header">
                     <header class="hero" id="heroSlideshow">
                         <img class="hero-slide active" src="banner/ondasonora4.gif">
-                        <!-- <img class="hero-slide" src="banner/d2.gif">-->
                         <img class="hero-slide" src="banner/isis (2).png">
                         <img class="hero-slide" src="banner/ondasonora.png">
                         <img class="hero-slide" src="banner/si.png">
@@ -1233,116 +618,6 @@
             <div class="excl-list" id="exclusivosList"></div>
         </div>
     </section>
-    
-    <section id="help-tab" class="tab-content">
-        <div class="help-container">
-            <!-- Coluna Esquerda: Passo a Passo -->
-            <div>
-                <h2 class="help-section-title"><i class="fa-solid fa-circle-play"></i> Central de Ajuda</h2>
-                <p class="help-section-subtitle">Aprenda a utilizar os modelos de voz premium da Callie no seu WhatsApp em segundos.</p>
-
-                <!-- Passo 1: Copiar o ID -->
-                <div class="help-card-pro">
-                    <div class="help-step-number">01</div>
-                    <h3 class="help-step-title"><i class="fa-regular fa-copy"></i> Passo 1: Copiar o ID de Voz</h3>
-                    <p class="help-step-desc">Selecione qualquer voz na plataforma que você deseja utilizar. Clique no botão <b>Copiar ID</b>. O sistema salvará na sua área de transferência o comando formatado com <code>$tts</code> na frente, de forma automática e pronta para uso.</p>
-                    
-                    <!-- Exemplo de Card de Voz com Seta indicativa -->
-                    <div class="help-mockup-wrap">
-                        <div class="card" style="width: 320px; pointer-events: none;">
-                            <div class="card-header">
-                                <div class="avatar-wrapper"><img src="imgs/ísis v1.jpg" class="avatar"><div class="status-dot"></div></div>
-                                <div class="info">
-                                    <span class="badge badge-purple">V9.7 PRO</span>
-                                    <h3>Ísis (Callie)</h3>
-                                    <p>Voz oficial da assistente virtual.</p>
-                                </div>
-                            </div>
-                            <div class="audio-player"><button class="play-btn"><i class="fa-solid fa-play"></i></button><div class="waveform"><div class="bar" style="height: 50%; opacity: 0.6"></div><div class="bar" style="height: 80%; opacity: 0.6"></div><div class="bar" style="height: 40%; opacity: 0.6"></div><div class="bar" style="height: 90%; opacity: 0.6"></div><div class="bar" style="height: 60%; opacity: 0.6"></div></div></div>
-                            <div class="card-actions">
-                                <button class="btn" style="background: var(--a); color: #fff; box-shadow: 0 0 15px var(--a);"><i class="fa-regular fa-copy"></i> Copiar ID</button>
-                            </div>
-                        </div>
-                        <div class="help-mockup-arrow">
-                            <i class="fa-solid fa-arrow-up-long"></i>
-                            <span>Clique Aqui!</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Passo 2: WhatsApp e Mensagem -->
-                <div class="help-card-pro">
-                    <div class="help-step-number">02</div>
-                    <h3 class="help-step-title"><i class="fa-brands fa-whatsapp"></i> Passo 2: Enviar no WhatsApp</h3>
-                    <p class="help-step-desc">Abra a sua conversa com o Bot da Callie no WhatsApp. Cole o comando copiado (ele virá no formato <code>$tts id_da_voz</code>) e, <b>logo em seguida</b>, dê um espaço e digite o texto que você deseja transformar em áudio.</p>
-                    
-                    <!-- Simulador de WhatsApp -->
-                    <div class="wp-chat-sim">
-                        <div class="wp-header">
-                            <img src="https://i.ibb.co/rWSpMsp/callie.png" class="wp-avatar">
-                            <div class="wp-info">
-                                <h4>Callie Bot ✦</h4>
-                                <span>Online</span>
-                            </div>
-                        </div>
-                        <div class="wp-body">
-                            <!-- Sent message -->
-                            <div class="wp-msg sent">
-                                <b>$tts f1b4053d50c9482687d1e17407bcaa7e</b> Olá Callie! Fale esta frase com a voz da Isis para mim.
-                                <span class="wp-time">10:42 <i class="fa-solid fa-check-double" style="color:#53bdeb"></i></span>
-                            </div>
-                            <!-- Received message -->
-                            <div class="wp-msg received">
-                                <div class="wp-audio-play">
-                                    <button class="wp-audio-btn"><i class="fa-solid fa-play"></i></button>
-                                    <div class="wp-audio-wave">
-                                        <span class="active" style="height:12px"></span>
-                                        <span class="active" style="height:18px"></span>
-                                        <span class="active" style="height:10px"></span>
-                                        <span class="active" style="height:22px"></span>
-                                        <span style="height:14px"></span>
-                                        <span style="height:16px"></span>
-                                        <span style="height:8px"></span>
-                                        <span style="height:18px"></span>
-                                        <span style="height:12px"></span>
-                                        <span style="height:14px"></span>
-                                    </div>
-                                </div>
-                                <span class="wp-time">10:42</span>
-                            </div>
-                        </div>
-                        <div class="wp-footer-input">
-                            <div class="wp-input-box">Cole o código aqui e envie...</div>
-                            <i class="fa-regular fa-paper-plane" style="color: #8696a0; cursor: pointer;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Coluna Direita: Convites e Links -->
-            <div class="help-side-cards">
-                <!-- WhatsApp Invite -->
-                <div class="pro-action-card wp-invite">
-                    <div class="pro-card-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                    <h3 class="pro-card-title">Bot no WhatsApp</h3>
-                    <p class="pro-card-desc">Clique no botão abaixo para abrir o chat diretamente com o Bot oficial da Callie e começar a gerar seus áudios com inteligência artificial.</p>
-                    <a href="https://wa.me/5511999999999?text=%2Fstart" target="_blank" class="pro-card-btn">
-                        <i class="fa-brands fa-whatsapp"></i> Conversar com Bot
-                    </a>
-                </div>
-
-                <!-- Outro Site da Callie -->
-                <div class="pro-action-card info-invite">
-                    <div class="pro-card-icon"><i class="fa-solid fa-globe"></i></div>
-                    <h3 class="pro-card-title">Mais Informações</h3>
-                    <p class="pro-card-desc">Conheça o outro site oficial da Callie para obter mais detalhes sobre o ecossistema, planos VIP adicionais, novidades e documentação completa.</p>
-                    <a href="https://callielwd-cpu.github.io/isis" target="_blank" class="pro-card-btn">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Outro Site
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <p>DESIGNED FOR CALLIE AUDIO SYSTEM</p>
@@ -1389,60 +664,16 @@
             renderModelSkeletons();
             renderCategorySkeletons();
 
-            // ---- LOADER INIT ----
-            initLoader();
-            setLoaderProgress(5);
-
             try {
-                // Passo 1: Carregar arquivos JSON
-                setLoaderProgress(15);
                 const [resCards, resTags] = await Promise.all([ 
                     fetch('cards.json'), fetch('tags.json')
                 ]);
                 modelos = await resCards.json();
                 tags = await resTags.json();
-                setLoaderProgress(35);
-
-                // Passo 2: Pré-carregar imagens críticas (personagem, slides do banner e os primeiros avatars)
-                const imagesToPreload = [
-                    'banner/isis (2).png',
-                    'banner/ondasonora4.gif',
-                    'banner/ondasonora.png',
-                    'banner/si.png',
-                    'https://i.ibb.co/9HNxcg6G/ondasonora1.gif',
-                    'https://i.ibb.co/rWSpMsp/callie.png'
-                ];
-
-                // Adiciona avatars das primeiras 8 vozes
-                modelos.slice(0, 8).forEach(m => {
-                    if (m.img) imagesToPreload.push(m.img);
-                });
-
-                const uniqueImages = [...new Set(imagesToPreload)];
-                let loadedCount = 0;
-
-                if (uniqueImages.length > 0) {
-                    await Promise.all(uniqueImages.map(url => {
-                        return new Promise((resolve) => {
-                            const img = new Image();
-                            img.src = url;
-                            img.onload = img.onerror = () => {
-                                loadedCount++;
-                                const imgProgress = 35 + (loadedCount / uniqueImages.length) * 55;
-                                setLoaderProgress(imgProgress);
-                                resolve();
-                            };
-                        });
-                    }));
-                }
             } catch (error) { 
                 console.error("Erro ao carregar dados", error);
                 showToast("Erro ao carregar dados", "triangle-exclamation");
             }
-
-            // Finaliza loader
-            setLoaderProgress(100);
-            setTimeout(() => hideLoader(), 600);
 
             // Iniciar interface
             initParticles();
@@ -1450,7 +681,6 @@
             renderCategories();
             renderExclusivos();
             startSlideshow();
-            startBgSlideshow();
 
             globalAudio.onended = () => { state.playingId = null; state.exclPlayingId = null; render(); renderExclusivos(); };
             
@@ -1963,23 +1193,21 @@
             
             const ph = tab === 'models' ? "Busque por nome ou tag..." : 
                        tab === 'categories' ? "Busque uma comunidade..." :
-                       tab === 'exclusivos' ? "Vozes exclusivas Top 10..." : 
-                       tab === 'help' ? "Como usar no WhatsApp..." : "Busque nos favoritos...";
+                       tab === 'exclusivos' ? "Vozes exclusivas Top 10..." : "Busque nos favoritos...";
             document.getElementById('searchInput').placeholder = ph;
 
             // Update Sidebar Links
             const links = document.querySelectorAll('.sidebar-link');
-            links.forEach(l => {
-                l.classList.remove('active');
-                if (l.getAttribute('onclick') && l.getAttribute('onclick').includes(`'${tab}'`)) {
-                    l.classList.add('active');
-                }
-            });
+            links.forEach(l => l.classList.remove('active'));
+            if(tab === 'models') links[0].classList.add('active');
+            else if(tab === 'categories') links[1].classList.add('active');
+            else if(tab === 'favorites') links[2].classList.add('active');
+            else if(tab === 'exclusivos') links[3].classList.add('active');
 
             // Update Page Title
-            const titleMap = { 'models': 'Início', 'categories': 'Categorias', 'favorites': 'Favoritos', 'exclusivos': 'Exclusivos', 'help': 'Ajuda & Tutoriais' };
+            const titleMap = { 'models': 'Início', 'categories': 'Categorias', 'favorites': 'Favoritos', 'exclusivos': 'Exclusivos' };
             const pageTitle = document.getElementById('pageTitle');
-            if(pageTitle) pageTitle.textContent = titleMap[tab] || 'Callie tts';
+            if(pageTitle) pageTitle.textContent = titleMap[tab] || 'Callie Audio';
 
             // Show/Hide premium header only on Início
             const premiumHeader = document.getElementById('inicio-premium-header');
@@ -2000,12 +1228,6 @@
                 render();
             }
 
-            // Ajustar opacidade da imagem lateral no background
-            const bgChar = document.querySelector('.bg-char-decor');
-            if (bgChar) {
-                bgChar.style.opacity = tab === 'help' ? '0.15' : '0.32';
-            }
-
             if(shouldScroll) {
                 const scrollArea = document.getElementById('contentScrollable');
                 if(scrollArea) scrollArea.scrollTop = 0;
@@ -2023,24 +1245,6 @@
         function startSlideshow() {
             let cur = 0, slides = document.querySelectorAll('.hero-slide');
             setInterval(() => { slides[cur].classList.remove('active'); cur = (cur + 1) % slides.length; slides[cur].classList.add('active'); }, 6000);
-        }
-
-        function startBgSlideshow() {
-            const bgImg = document.querySelector('.bg-char-decor');
-            if (!bgImg) return;
-            const urls = [
-                'https://i.ibb.co/8D4mwJq8/sdel.png',
-                'https://i.ibb.co/S4tXT9KX/youte.gif"'
-            ];
-            let cur = 0;
-            setInterval(() => {
-                bgImg.style.opacity = 0;
-                setTimeout(() => {
-                    cur = (cur + 1) % urls.length;
-                    bgImg.src = urls[cur];
-                    bgImg.style.opacity = state.activeTab === 'help' ? 0.15 : 0.32;
-                }, 600);
-            }, 12000);
         }
 
         function initParticles() {
@@ -2068,86 +1272,6 @@
         }
 
         init();
-
-        // ============================================
-        // LOADER FUNCTIONS
-        // ============================================
-        function initLoader() {
-            // Build waveform bars
-            const wave = document.getElementById('loaderWave');
-            const barCount = 28;
-            const delays = [];
-            for (let i = 0; i < barCount; i++) {
-                const bar = document.createElement('div');
-                bar.className = 'loader-wave-bar';
-                const delay = (Math.abs(i - barCount / 2) * 0.04 + Math.random() * 0.15).toFixed(2);
-                bar.style.animationDelay = delay + 's';
-                bar.style.animationDuration = (0.6 + Math.random() * 0.7).toFixed(2) + 's';
-                wave.appendChild(bar);
-            }
-
-            // Loader canvas animation (mini wave)
-            const canvas = document.getElementById('loader-canvas');
-            const ctx = canvas.getContext('2d');
-            let w, h, t = 0;
-            function resizeLC() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-            window.addEventListener('resize', resizeLC); resizeLC();
-            let lcRaf;
-            function drawLC() {
-                ctx.fillStyle = 'rgba(3, 0, 20, 0.14)';
-                ctx.fillRect(0, 0, w, h);
-                t += 0.012;
-                const lines = 10, pts = 36;
-                const spacing = w / (pts - 1);
-                for (let l = 0; l < lines; l++) {
-                    const lp = l / lines;
-                    ctx.beginPath();
-                    const r = Math.floor(100 + Math.sin(t + lp * 2) * 39);
-                    const g = Math.floor(20 + Math.cos(t - lp) * 20);
-                    const b = Math.floor(230 - lp * 80);
-                    const a = (0.08 + (1 - lp) * 0.38).toFixed(3);
-                    ctx.strokeStyle = `rgba(${r},${g},${b},${a})`;
-                    ctx.lineWidth = 1.6 * (1 - lp * 0.55);
-                    if (l < 3) { ctx.shadowBlur = 14; ctx.shadowColor = `rgba(${r},${g},${b},0.55)`; }
-                    else { ctx.shadowBlur = 0; }
-                    let pa = [];
-                    for (let i = 0; i < pts; i++) {
-                        const x = i * spacing;
-                        const w1 = Math.sin(i * 0.18 + t * 2.5 + lp * 3);
-                        const w2 = Math.cos(i * 0.08 - t * 1.2 + lp * 1.5);
-                        const w3 = Math.sin(t * 0.8 + i * lp * 0.05);
-                        const dfc = Math.abs(i - pts / 2) / (pts / 2);
-                        const env = Math.pow(Math.cos(dfc * Math.PI / 2), 2);
-                        const y = h / 2 + (w1 * w2 + w3) * 130 * env * (1 - lp * 0.5);
-                        pa.push({x, y});
-                        if (i === 0) ctx.moveTo(x, y);
-                        else {
-                            const xc = (pa[i-1].x + x) / 2, yc = (pa[i-1].y + y) / 2;
-                            ctx.quadraticCurveTo(pa[i-1].x, pa[i-1].y, xc, yc);
-                        }
-                    }
-                    ctx.stroke();
-                }
-                lcRaf = requestAnimationFrame(drawLC);
-            }
-            drawLC();
-            window._loaderRaf = lcRaf;
-            window._loaderCtx = { raf: null, cancel: () => cancelAnimationFrame(window._loaderRaf) };
-        }
-
-        function setLoaderProgress(pct) {
-            const bar = document.getElementById('loaderBar');
-            const label = document.getElementById('loaderPct');
-            if (bar) bar.style.width = Math.min(100, pct).toFixed(1) + '%';
-            if (label) label.textContent = Math.min(100, Math.floor(pct)) + '%';
-        }
-
-        function hideLoader() {
-            const loader = document.getElementById('loader-screen');
-            if (!loader) return;
-            loader.classList.add('hide');
-            setTimeout(() => { loader.remove(); }, 900);
-        }
 
         // ============================================
         // SURREAL SOUNDWAVE BACKGROUND (from 1.html)
@@ -2221,6 +1345,5 @@
             drawWave();
         })();
     </script>
-    <img src="banner/miko.gif" class="bg-char-decor" alt="Callie Decor">
 </body>
 </html>
