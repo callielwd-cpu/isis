@@ -10,6 +10,10 @@
         "img2": "./img2/nime.gif"
     },
     {
+        "Tag": "Marketing",
+        "img": "./img2/marketingdigital.jpg"
+    },
+    {
         "Tag": "youtubers",
         "img2": "./img2/youte (1).gif",
         "img": "./img2/youte (1).gif"
