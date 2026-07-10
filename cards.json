@@ -72,6 +72,24 @@
         "Audio": "Audio/Big Fone.mp3"
     },
     {
+        "nome": "Locutora Varejo V3",
+        "id": "1c51f877e8794671baccc43237d1eb0f",
+        "img": "./imgs/Loucura Varejo V3.jpg",
+        "bio": "A promoção Verão Meu Carro é Hiper do Supermercado Hipercordeiro continua! Você tem mais uma chance de ganhar um carro zero quilômetro. A cada 10 refrescos Frisco você ganha um cupom para concorrer. Confira as ofertas e participe.",
+        "Tag": "Marketing",
+        "models": "V5.4",
+        "Audio": "Audio/Loucura Varejo V3.mp3"
+    },
+    {
+        "nome": "Locutora V1",
+        "id": "a8a2501d16f24c458437d1cb6b4edb3e",
+        "img": "./imgs/Locutora V1.jpg",
+        "bio": "Atenção a todos! Descubra promoções incríveis e novidades que você não pode perder. Com esta oferta especial, sua vida vai ficar muito mais fácil e divertida. Venha conferir!",
+        "Tag": "Marketing",
+        "models": "V5.4",
+        "Audio": "Audio/Locutora V1.mp3"
+    },
+    {
         "nome": "paulinho",
         "id": "baba528f598247da954dab6b8aeb3476",
         "img": "./imgs/paulinho.jpg",
