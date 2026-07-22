@@ -546,9 +546,9 @@
 
         /* =========================================
            HOMEPAGE HERO SECTION
-           ========================================= */
+           =========================================
+        */
         .homepage-hero {
-            position: relative;
             width: 100%;
             min-height: 100vh;
             display: flex;
@@ -557,7 +557,7 @@
             justify-content: center;
             overflow: hidden;
             background: #030014;
-            z-index: 5;
+            position: relative;
         }
 
         /* Hero deep space background */
@@ -925,18 +925,6 @@
         /* App anchor (invisible target) */
         #app-anchor { display: block; position: relative; }
 
-        /* Hero exit animation */
-        .homepage-hero.hero-exit {
-            animation: heroExit 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        @keyframes heroExit {
-            0%  { opacity: 1; transform: translateY(0) scale(1); }
-            100%{ opacity: 0; transform: translateY(-40px) scale(0.98); }
-        }
-        .homepage-hero.hero-hidden {
-            display: none !important;
-        }
-
         /* WhatsApp button on cards */
         .btn-whatsapp {
             width: 42px;
@@ -979,6 +967,29 @@
             .hero-chips { max-width: 90vw; }
             .hero-cta { gap: 12px; }
             .hero-btn-primary, .hero-btn-secondary { padding: 13px 24px; font-size: 0.9rem; }
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal-card {
+            opacity: 0;
+            transform: translateY(30px) scale(0.97);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-card.revealed {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -1088,7 +1099,7 @@
 
         <!-- CTA buttons -->
         <div class="hero-cta">
-            <button class="hero-btn-primary" id="heroVerModelos" onclick="heroScrollToApp()">
+            <button class="hero-btn-primary" id="heroVerModelos" onclick="switchTab('models', true)">
                 <i class="fa-solid fa-layer-group"></i>
                 Ver Modelos
                 <i class="fa-solid fa-arrow-right"></i>
@@ -1100,16 +1111,10 @@
         </div>
 
         <!-- Scroll indicator -->
-        <div class="hero-scroll-indicator" onclick="heroScrollToApp()">
-            <span>Rolar</span>
-            <div class="hero-scroll-mouse">
+        <div class="hero-scroll-indicator" onclick="switchTab('models', true)">
                 <div class="hero-scroll-wheel"></div>
-            </div>
         </div>
     </section>
-
-    <!-- APP ANCHOR -->
-    <div id="app-anchor"></div>
 
     <div class="app-layout">
         <!-- Sidebar -->
@@ -1120,7 +1125,8 @@
             
             <div class="sidebar-menu">
                 <div class="sidebar-section">⚛︎ Principal</div>
-                <a href="#" class="sidebar-link active" onclick="switchTab('models', true)"><i class="fa-solid fa-layer-group"></i> Início</a>
+                <a href="#" class="sidebar-link" onclick="switchTab('home')"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#" class="sidebar-link active" onclick="switchTab('models', true)"><i class="fa-solid fa-layer-group"></i> Modelos</a>
                 <a href="#" class="sidebar-link" onclick="switchTab('categories')"><i class="fa-solid fa-shapes"></i> Categorias</a>
                 <a href="#" class="sidebar-link" onclick="switchTab('favorites')"><i class="fa-solid fa-heart"></i> Favoritos</a>
                 <div class="sidebar-section">⚛︎ Premium/VIP</div>
@@ -1156,7 +1162,12 @@
 
             <!-- Scrollable Content Area -->
             <div class="content-scrollable" id="contentScrollable">
-                
+
+                <!-- Home Tab (Homepage Hero as section) -->
+                <main id="home-tab" class="tab-content active">
+                    <!-- Hero content is injected here from the #homepageHero section via JS -->
+                </main>
+
                 <!-- Premium Header for Início -->
                 <div id="inicio-premium-header" class="premium-header">
                     <header class="hero" id="heroSlideshow">
@@ -1177,7 +1188,7 @@
                     <div class="alphabet-track" id="alphabetTrack"></div>
                 </div>
 
-    <main id="models-tab" class="tab-content active">
+    <main id="models-tab" class="tab-content">
         <div class="grid" id="modelsGrid"></div>
         
         <div id="similarSection" class="similar-section">
@@ -1283,34 +1294,54 @@
         };
 
         // =========================================
-        //  HERO SECTION FUNCTIONS
+        //  HERO SECTION FUNCTIONS & SCROLL REVEAL
         // =========================================
-        function heroScrollToApp() {
+        function initHomeTab() {
+            // Move the homepage hero section into the home-tab content
+            const homeTab = document.getElementById('home-tab');
             const hero = document.getElementById('homepageHero');
-            const anchor = document.getElementById('app-anchor');
-            if (!hero) return;
-
-            // Mark session so hero never shows again this session
-            sessionStorage.setItem('hero_seen', '1');
-
-            // Exit animation then hide
-            hero.classList.add('hero-exit');
-            setTimeout(() => {
-                hero.classList.add('hero-hidden');
-                // Scroll app into view cleanly
-                if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Reset window to top of app-layout
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 500);
+            if (homeTab && hero) {
+                homeTab.appendChild(hero);
+                hero.style.position = 'relative';
+                hero.style.zIndex = 'auto';
+            }
         }
 
-        // Check if hero was already seen this session → hide immediately
-        (function checkHeroSeen() {
-            if (sessionStorage.getItem('hero_seen') === '1') {
-                const hero = document.getElementById('homepageHero');
-                if (hero) hero.classList.add('hero-hidden');
-            }
-        })();
+        function observeNewCards() {
+            const scrollArea = document.getElementById('contentScrollable');
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry, idx) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('revealed');
+                        }, idx * 45);
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: scrollArea,
+                threshold: 0.05
+            });
+
+            document.querySelectorAll('.reveal-card:not(.revealed)').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Also observe scroll-reveal section targets
+            const sections = [
+                document.getElementById('alphabetContainer'),
+                document.getElementById('inicio-premium-header'),
+                document.getElementById('similarSection'),
+                document.querySelector('.exclusivos-section'),
+                document.querySelector('.excl-list-section')
+            ];
+            sections.forEach(sec => {
+                if (sec && !sec.classList.contains('revealed')) {
+                    sec.classList.add('reveal-on-scroll');
+                    observer.observe(sec);
+                }
+            });
+        }
 
         // Animated count-up for hero stat
         function animateCountUp(el, target, duration) {
@@ -1439,6 +1470,7 @@
             renderCategories();
             renderExclusivos();
             startSlideshow();
+            initHomeTab(); // Move homepage hero into the home tab
 
             // Animate hero model counter after data loads
             const heroStatEl = document.getElementById('heroStatModels');
@@ -1449,8 +1481,8 @@
             globalAudio.onended = () => { state.playingId = null; state.exclPlayingId = null; render(); renderExclusivos(); };
             
             // --- CORREÇÃO: PERSISTÊNCIA DA ABA ---
-            // Recupera a última aba aberta pelo usuário ou usa 'models' como padrão
-            const lastTab = localStorage.getItem('isis_last_tab') || 'models';
+            // Ao entrar, sempre começa na Home
+            const lastTab = 'home';
             // Chama o switchTab mas SEM scroll (passa false no scroll)
             switchTab(lastTab, false, false);
             
@@ -1619,7 +1651,7 @@
                 else if(m.models === "🏅 Top 10") badge = "badge-top";
 
                 return `
-                <div class="card" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+                <div class="card reveal-card" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
                     <div class="card-header">
                         <div class="avatar-wrapper"><img src="${m.img}" class="avatar"><div class="status-dot"></div></div>
                         <div class="info"><span class="badge ${badge}">${m.models || "🙂‍↕️ Legal"}</span>${m.Tag ? `<span class="tag-pill">${m.Tag}</span>` : ''}<h3>${m.nome}</h3><p>${m.bio}</p></div>
@@ -1633,6 +1665,8 @@
                     </div>
                 </div>`;
             }).join('');
+
+            observeNewCards();
         }
 
         // --- CATEGORIES ---
@@ -1650,7 +1684,7 @@
                 const avatarsHTML = catModels.slice(0, 3).map(m => `<img src="${m.img}" alt="${m.nome}">`).join('');
                 
                 return `
-                <div class="comm-card" onclick="openCategoryInner('${t.Tag}')">
+                <div class="comm-card reveal-card" onclick="openCategoryInner('${t.Tag}')">
                     <img src="${t.img}" class="comm-bg" loading="lazy">
                     <div class="comm-content">
                         <span class="comm-badge">Hub Oficial</span>
@@ -1666,6 +1700,8 @@
                     </div>
                 </div>`;
             }).join('');
+
+            observeNewCards();
 
             renderPaginationControl(document.getElementById('pagination-cats'), state.pageCats, total, (p) => {
                 state.pageCats = p;
@@ -1986,19 +2022,21 @@
             
             const ph = tab === 'models' ? "Busque por nome ou tag..." : 
                        tab === 'categories' ? "Busque uma comunidade..." :
-                       tab === 'exclusivos' ? "Vozes exclusivas Top 10..." : "Busque nos favoritos...";
+                       tab === 'exclusivos' ? "Vozes exclusivas Top 10..." :
+                       tab === 'home' ? "" : "Busque nos favoritos...";
             document.getElementById('searchInput').placeholder = ph;
 
-            // Update Sidebar Links
+            // Update Sidebar Links (now has 5 links: Home, Início, Categorias, Favoritos, Exclusivos)
             const links = document.querySelectorAll('.sidebar-link');
             links.forEach(l => l.classList.remove('active'));
-            if(tab === 'models') links[0].classList.add('active');
-            else if(tab === 'categories') links[1].classList.add('active');
-            else if(tab === 'favorites') links[2].classList.add('active');
-            else if(tab === 'exclusivos') links[3].classList.add('active');
+            if(tab === 'home')       links[0].classList.add('active');
+            else if(tab === 'models')     links[1].classList.add('active');
+            else if(tab === 'categories') links[2].classList.add('active');
+            else if(tab === 'favorites')  links[3].classList.add('active');
+            else if(tab === 'exclusivos') links[4].classList.add('active');
 
             // Update Page Title
-            const titleMap = { 'models': 'Início', 'categories': 'Categorias', 'favorites': 'Favoritos', 'exclusivos': 'Exclusivos' };
+            const titleMap = { 'home': 'Home', 'models': 'Início', 'categories': 'Categorias', 'favorites': 'Favoritos', 'exclusivos': 'Exclusivos' };
             const pageTitle = document.getElementById('pageTitle');
             if(pageTitle) pageTitle.textContent = titleMap[tab] || 'Callie Audio';
 
@@ -2011,6 +2049,7 @@
             const activeTabContent = document.getElementById(tab + '-tab');
             if(activeTabContent) activeTabContent.classList.add('active');
             
+            // Alphabet bar: only on Início
             const alphabetContainer = document.getElementById('alphabetContainer');
             if(alphabetContainer) alphabetContainer.style.display = (tab === 'models') ? 'block' : 'none';
             
@@ -2020,6 +2059,10 @@
             if(tab === 'favorites' || tab === 'models') {
                 render();
             }
+
+            // Hide search bar on Home tab
+            const searchContainer = document.querySelector('.search-container');
+            if(searchContainer) searchContainer.style.display = tab === 'home' ? 'none' : '';
 
             if(shouldScroll) {
                 const scrollArea = document.getElementById('contentScrollable');
