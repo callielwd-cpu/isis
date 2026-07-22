@@ -1478,7 +1478,16 @@
                 animateCountUp(heroStatEl, modelos.length, 1800);
             }
 
-            globalAudio.onended = () => { state.playingId = null; state.exclPlayingId = null; render(); renderExclusivos(); };
+            globalAudio.onended = () => {
+                const prevPlayId = state.playingId;
+                const prevExclId = state.exclPlayingId;
+                state.playingId = null;
+                state.exclPlayingId = null;
+                // Update card UI without full re-render
+                updateAudioUI(prevPlayId, null);
+                // Exclusivos still use their own render for simplicity
+                if (prevExclId) renderExclusivos();
+            };
             
             // --- CORREÇÃO: PERSISTÊNCIA DA ABA ---
             // Ao entrar, sempre começa na Home
@@ -1651,7 +1660,7 @@
                 else if(m.models === "🏅 Top 10") badge = "badge-top";
 
                 return `
-                <div class="card reveal-card" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+                <div class="card reveal-card" data-card-id="${m.id}" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
                     <div class="card-header">
                         <div class="avatar-wrapper"><img src="${m.img}" class="avatar"><div class="status-dot"></div></div>
                         <div class="info"><span class="badge ${badge}">${m.models || "🙂‍↕️ Legal"}</span>${m.Tag ? `<span class="tag-pill">${m.Tag}</span>` : ''}<h3>${m.nome}</h3><p>${m.bio}</p></div>
@@ -1915,14 +1924,54 @@
              c.innerHTML = h; c.onPageChange = cb;
         }
 
+        // Targeted audio UI update — avoids full grid re-render (prevents card flash)
+        function updateAudioUI(oldId, newId) {
+            // Remove playing state from the previously playing card
+            if (oldId) {
+                const oldCard = document.querySelector(`.card[data-card-id="${oldId}"]`);
+                if (oldCard) {
+                    oldCard.querySelector('.audio-player')?.classList.remove('playing');
+                    const icon = oldCard.querySelector('.play-btn i');
+                    if (icon) { icon.classList.remove('fa-pause'); icon.classList.add('fa-play'); }
+                    const btn = oldCard.querySelector('.play-btn');
+                    if (btn) { btn.setAttribute('aria-label', 'Tocar audio'); btn.setAttribute('title', 'Tocar'); }
+                    oldCard.querySelectorAll('.bar').forEach(b => b.style.animationDelay = '');
+                }
+            }
+            // Apply playing state to the new card
+            if (newId) {
+                const newCard = document.querySelector(`.card[data-card-id="${newId}"]`);
+                if (newCard) {
+                    newCard.querySelector('.audio-player')?.classList.add('playing');
+                    const icon = newCard.querySelector('.play-btn i');
+                    if (icon) { icon.classList.remove('fa-play'); icon.classList.add('fa-pause'); }
+                    const btn = newCard.querySelector('.play-btn');
+                    if (btn) { btn.setAttribute('aria-label', 'Pausar audio'); btn.setAttribute('title', 'Pausar'); }
+                    newCard.querySelectorAll('.bar').forEach((b, i) => b.style.animationDelay = `${i * 0.05}s`);
+                }
+            }
+        }
+
         function toggleAudio(id) {
             const model = modelos.find(m => m.id === id);
-            if (state.playingId === id) { globalAudio.pause(); state.playingId = null; } 
-            else {
-                if (model && model.Audio) { state.playingId = id; globalAudio.src = model.Audio; globalAudio.currentTime = 0; globalAudio.play().catch(e => { console.error(e); showToast("Erro no áudio", "circle-xmark"); }); } 
-                else { showToast("Áudio indisponível", "circle-exclamation"); }
+            const prevId = state.playingId;
+            if (state.playingId === id) {
+                globalAudio.pause();
+                state.playingId = null;
+                updateAudioUI(prevId, null);
+            } else {
+                if (model && model.Audio) {
+                    state.playingId = id;
+                    state.exclPlayingId = null;
+                    globalAudio.src = model.Audio;
+                    globalAudio.currentTime = 0;
+                    globalAudio.play().catch(e => { console.error(e); showToast("Erro no áudio", "circle-xmark"); });
+                    updateAudioUI(prevId, id);
+                } else {
+                    showToast("Áudio indisponível", "circle-exclamation");
+                }
             }
-            render();
+            // render() removido — updateAudioUI() faz update cirúrgico sem flash
         }
 
         function toggleFav(id) {
